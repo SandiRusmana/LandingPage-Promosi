@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+/*
+  THEME SPECCS (Tailwind v4 – didefinisikan lewat @theme)
+  Ubah warna brand di sini, seluruh website ikut berubah.
+  Contoh pemakaian: bg-brand-500, text-brand-400, bg-ink-900, font-display
+*/
+@theme {
+  --font-display: "Bebas Neue", Impact, "Arial Narrow", sans-serif;
+  --font-sans: "Poppins", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* Oranye neon */
+  --color-brand-300: #ffb27a;
+  --color-brand-400: #ff8a2b;
+  --color-brand-500: #ff6a00;
+  --color-brand-600: #e55a00;
+
+  /* Hitam bertingkat */
+  --color-ink-950: #070707;
+  --color-ink-900: #0f0f10;
+  --color-ink-800: #18181a;
+  --color-ink-700: #242427;
+  --color-ink-600: #36363b;
+
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-ping-slow: ping-slow 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(-1deg); }
+    50% { transform: translateY(-14px) rotate(1deg); }
+  }
+  @keyframes ping-slow {
+    0% { transform: scale(1); opacity: 0.6; }
+    80%, 100% { transform: scale(1.7); opacity: 0; }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  /* offset supaya judul section tidak tertutup navbar sticky */
+  scroll-padding-top: 76px;
+}
+
+body {
+  background: var(--color-ink-950);
+  color: #f4f4f5;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Fokus keyboard yang jelas (aksesibilitas) */
+:focus-visible {
+  outline: 3px solid var(--color-brand-400);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Hormati preferensi "kurangi gerakan" */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+/* Pola garis diagonal dekoratif */
+.stripes {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    rgba(255, 255, 255, 0.04) 0 2px,
+    transparent 2px 14px
+  );
+}
